@@ -12,13 +12,18 @@
 
 
 @interface YaWebDBSaver () {
+    //Папка, использующаяся в качестве родительской
     Folder *_parent;
+    
+    //Массив файлов, дочерних для текущей родительской папки
     NSMutableArray *_childrenArray;
     
+    //Дескриптор, использующийся для преобразования множества дочерних файлов в массив
     NSSortDescriptor *_sortDesc;
     
-    
+    //Форматтер для даты создания файла
     NSDateFormatter *_startDateFormatter;
+    //Форматтер для даты последнего изменения файла
     NSDateFormatter *_lastModifiedDateFormatter;
 }
 
@@ -41,6 +46,7 @@ static NSString *const kContentType = @"getcontenttype";
 
 
 //===============================================================================
+//инициализация объекта класса
 - (YaWebDBSaver *)initWithParentFolder:(Folder *)_parentFolder {
     self = [super init];
     
@@ -100,7 +106,7 @@ static NSString *const kContentType = @"getcontenttype";
 //===============================================================================
 //Метод работы с объектом, который будет создаваться из словаря dict
 - (void) createNewObjectWithDictionary:(NSDictionary *)dict {
-    //    NSDictionary *dictionary = dict;
+
     //Находим в словаре ссылку на объект
     NSString *href = [dict valueForKey:kHref];
     
@@ -128,7 +134,6 @@ static NSString *const kContentType = @"getcontenttype";
         if (object) {
             
             [_childrenArray removeObject:object];
-            [self updateObject:object withDictionary:dict];
         }
         
         //Объект не нашли нигде в базе, его надо создавать
@@ -137,6 +142,7 @@ static NSString *const kContentType = @"getcontenttype";
             if ([[dict valueForKey:@"collection"] isEqual:@(YES)]) {
                 object = [NSEntityDescription insertNewObjectForEntityForName:@"Folder" inManagedObjectContext:self.managedObjectContext];
                 
+                //Если родительская папка все еще не задана, то используем первую же папку в качестве родительской
                 if (!_parent) {
                     _parent = (Folder *)object;
                 }
@@ -151,10 +157,15 @@ static NSString *const kContentType = @"getcontenttype";
                 object.parent = _parent;
                 
             }
+            
+            //Сохраняем контекст с новыми изменениями
             [self.managedObjectContext save:nil];
-            //Обновляем вновь созданный объект данными из словаря
-            [self updateObject:object withDictionary:dict];
         }
+        
+        
+        //Обновляем вновь созданный объект данными из словаря
+        [self updateObject:object withDictionary:dict];
+
     }
     
 }
@@ -216,6 +227,8 @@ static NSString *const kContentType = @"getcontenttype";
 #pragma mark - YaWebXMLParser delegate
 ////////////////////////////////////////////////////////////////////////////////
 - (void)parser:(YaWebXMLParser *)parser didFindElement:(NSDictionary *)dictionary {
+    
+    //Начало обработки нового элемента, наденного парсером
     [self createNewObjectWithDictionary:dictionary];
 }
 
@@ -238,6 +251,8 @@ static NSString *const kContentType = @"getcontenttype";
     
     NSArray *ar = [_parent.children sortedArrayUsingDescriptors:@[sort1, sort]];
 
+    
+    //Если делегат реализует метод, уведомляем его об окончании парсинга и сохранения элемента
     if ([_delegate respondsToSelector:@selector(saver:didEndSaveWithElementsArray:error:)]) {
         [_delegate saver:self didEndSaveWithElementsArray:ar error:error];
     }
@@ -247,6 +262,8 @@ static NSString *const kContentType = @"getcontenttype";
 
 //===============================================================================
 - (void)parserDidStartParsing:(YaWebXMLParser *)parser {
+    
+    //Когда парсер начал работу, формируем массив уже имеющихся в базе дочерних папок для текущей родительской
     [self createChildrenArrayForParentFolder:_parent];
 }
 @end

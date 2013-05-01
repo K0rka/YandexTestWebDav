@@ -8,5 +8,6 @@
 
 "Error" = "Error";
 "ErrorWhileGetAccessToken" =  "Authorization error. Check your Internet connection and try again.";
-"Retry" = "Try again";
 "CantRefresh" = "Can't refresh folder content. Check your Internet connection and press Refresh button.";
+"Loading" = "Loading";
+"Retry" = "Try again";

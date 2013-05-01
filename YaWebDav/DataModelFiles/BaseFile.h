@@ -10,10 +10,14 @@
 #import <CoreData/CoreData.h>
 
 
+/**
+	Перечисление возможных типов файлов
+ */
 typedef enum FileType {
-    FileTypeFolder,
-    FileTypeFile
+	FileTypeFolder, /**< "Папка" */
+	FileTypeFile /**< "Файл" */
 } FileType;
+
 
 
 @class BaseFile, Folder;

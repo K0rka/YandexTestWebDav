@@ -26,7 +26,7 @@
     NSMutableString *_currentElementValue;
     
     NSDictionary *_eqDict;
-
+    
     
     Folder *_parent;
     
@@ -66,7 +66,7 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
         if (accessToken) {
             sharedInstance.accessToken = accessToken;
         }
-
+        
         sharedInstance.sortDesc = [sharedInstance sortedDescriptors];
         
     });
@@ -87,18 +87,19 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
 //===============================================================================
 - (void) setAccessToken:(NSString *)accessToken {
     
-    
     _accessToken = accessToken;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDidGetAccessToken object:self];
     
+    //Посылаем уведомление о том, что пользователь авторизовался в приложении
+    NSNotification *didGetAccessTokenNotification = [NSNotification notificationWithName:kDidGetAccessToken
+                                                                                  object:self
+                                                                                userInfo:nil];
+    [[NSNotificationQueue defaultQueue] enqueueNotification:didGetAccessTokenNotification
+                                               postingStyle:NSPostASAP];
     
-    
+    //Сохраняем полученный токен
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    
     [userDefaults setValue:_accessToken forKey:kAccessTokenDefaultsKey];
-    
     [userDefaults synchronize];
 }
 
@@ -112,45 +113,47 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
 
 
 //===============================================================================
-- (void)getAllFoldersForCurrentUserStartingWithFolder:(Folder *)folder withCompletionBlock:(void (^)())completionBlock {
-//    
-////    dispatch_group_t resubscribeGroup = dispatch_group_create();
-////    dispatch_group_enter(resubscribeGroup);
-//
-//    return;
-//    [_mocsArray removeAllObjects];
-//    [self disableAllContentUsingLoader:YES];
-//    __weak   YaWebDAVDataController *wSelf = self;
-//    [self getFoldersForFolder:folder withCompletionBlock:^(NSArray *folders, NSError *error) {
-//
-//        int i = 0;
-//
-//        for (BaseFile *nextFile in folders) {
-//            if ([nextFile isKindOfClass:[Folder class]]) {
-//                i++;
-//
-//                    [wSelf getAllFoldersForCurrentUserStartingWithFolder:(Folder *)nextFile withCompletionBlock:nil];
-//
-//            }
-//        }
-//
-//        if (i==0) {
-//        
-//            [self enableAllcontent];
-//            if (completionBlock) {
-//                completionBlock();
-//            }
-//        }
-////        dispatch_group_leave(resubscribeGroup);
-//        
-//    }];
-//    //Завершение работы
-////    dispatch_group_notify(resubscribeGroup, dispatch_get_main_queue(), ^{
-//        
-////    });
-}
+/*- (void)getAllFoldersForCurrentUserStartingWithFolder:(Folder *)folder withCompletionBlock:(void (^)())completionBlock {
+ //
+ ////    dispatch_group_t resubscribeGroup = dispatch_group_create();
+ ////    dispatch_group_enter(resubscribeGroup);
+ //
+ //    return;
+ //    [_mocsArray removeAllObjects];
+ //    [self disableAllContentUsingLoader:YES];
+ //    __weak   YaWebDAVDataController *wSelf = self;
+ //    [self getFoldersForFolder:folder withCompletionBlock:^(NSArray *folders, NSError *error) {
+ //
+ //        int i = 0;
+ //
+ //        for (BaseFile *nextFile in folders) {
+ //            if ([nextFile isKindOfClass:[Folder class]]) {
+ //                i++;
+ //
+ //                    [wSelf getAllFoldersForCurrentUserStartingWithFolder:(Folder *)nextFile withCompletionBlock:nil];
+ //
+ //            }
+ //        }
+ //
+ //        if (i==0) {
+ //
+ //            [self enableAllcontent];
+ //            if (completionBlock) {
+ //                completionBlock();
+ //            }
+ //        }
+ ////        dispatch_group_leave(resubscribeGroup);
+ //
+ //    }];
+ //    //Завершение работы
+ ////    dispatch_group_notify(resubscribeGroup, dispatch_get_main_queue(), ^{
+ //
+ ////    });
+ }*/
 
 
+
+//Формирование запроса получения информации по содержимому папки
 - (NSMutableURLRequest *)urlRequestForFolder:(Folder *)folder
 {
     NSString *stringForURL = [NSString stringWithFormat:@"https://webdav.yandex.ru%@", folder ? folder.link : @"/"];
@@ -167,115 +170,100 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
     return urlRequest;
 }
 
+
+
 //===============================================================================
 - (void) getFoldersForFolder:(Folder *)folder
          withCompletionBlock: (void (^)(NSArray *folders, NSError *error) )completionBlock {
     
     NSManagedObjectID *folderID = nil;
     if (folder) {
-       folderID = folder.objectID;
-
-    }
-    
-    if (!_mocsArray.count) {
-        _mocsArray = [NSMutableArray array];
+        folderID = folder.objectID;
+        
     }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    //Создаем новый контекст для этой очереди
-
+        //Создаем новый контекст для этой очереди
+        if (!newMoc) {
+            AppDelegate *theDelegate = [[UIApplication sharedApplication] delegate];
+            newMoc = [[NSManagedObjectContext alloc] init];
+            [newMoc setPersistentStoreCoordinator:[theDelegate persistentStoreCoordinator]];
+            //
+            // Register for context save changes notification
+            NSNotificationCenter *notify = [NSNotificationCenter defaultCenter];
+            [notify addObserver:self
+                       selector:@selector(mergeChanges:)
+                           name:NSManagedObjectContextDidSaveNotification
+                         object:newMoc];
+        }
         
-    if (!newMoc) {
-        AppDelegate *theDelegate = [[UIApplication sharedApplication] delegate];
-        newMoc = [[NSManagedObjectContext alloc] init];
-        [newMoc setPersistentStoreCoordinator:[theDelegate persistentStoreCoordinator]];
-        //
-        // Register for context save changes notification
-        NSNotificationCenter *notify = [NSNotificationCenter defaultCenter];
-        [notify addObserver:self
-                   selector:@selector(mergeChanges:)
-                       name:NSManagedObjectContextDidSaveNotification
-                     object:newMoc];
-    }
-    //            [_mocsArray addObject:newMoc];
-    //        }
-    __weak YaWebDAVDataController *wSelf = self;
-    
-    
-    if (folderID) {
-        _folderToParse = (Folder *)[newMoc objectWithID:folderID];
-    }
-    else{
-        _folderToParse = nil;
-    }
+        
+        __weak YaWebDAVDataController *wSelf = self;
+        
+        //Получаем папку для которой делается запрос в текущем треде
+        if (folderID) {
+            _folderToParse = (Folder *)[newMoc objectWithID:folderID];
+        }
+        else{
+            _folderToParse = nil;
+        }
         NSMutableURLRequest *urlRequest = [self urlRequestForFolder:_folderToParse];
         
-    
-    
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-//
-
-   NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];//sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-            NSLog(@"response = %@  error = %@", response, error );
-            NSLog(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
+        NSURLResponse *response = nil;
+        NSError *error = nil;
         
-
-
-            // Do the work
-            // Your method here
-            // Call save on context (this will send a save notification and call the method below)
-//            BOOL success = [newMoc save:nil];
-            //Если в результате не произошло ошибки, отправляем данные парситься
-            if (!error) {
-                
-                if (completionBlock) {
-                    _completionBlock = completionBlock;
-                }
-                YaWebXMLParser *parser = [[YaWebXMLParser alloc] initWithData:data edgeElement:@"resourse"];
-                
-                YaWebDBSaver *saver = [[YaWebDBSaver alloc] initWithParentFolder:_folderToParse];
-                parser.delegate = saver;
-                saver.delegate = wSelf;
-                saver.managedObjectContext = newMoc;
-                
-                [parser parse];
-
+        NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];//sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSLog(@"error = %@", error );
+        NSLog(@"data = %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] );
+        
+        
+        //Если в результате не произошло ошибки, отправляем данные парситься
+        if (!error) {
             
+            if (completionBlock) {
+                _completionBlock = completionBlock;
             }
-            //Если при загрузке произошла какая-то ошибка
-            else {
-                if (completionBlock) {
-                    
-                    NSArray *array = nil;
-                    
-                    //Если есть папка для парсинга, используем дочерние элементы, уже имеющиеся в базе
-                    if (_folderToParse) {
-                        array = [_folderToParse.children sortedArrayUsingDescriptors:self.sortDesc];
-                    }
-                    
-                    //Если парсим корневой элемент
-                    else {
-                        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"link == %@", @"/"];
-                        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Folder"];
-                        [request setPredicate:predicate];
-                        
-                        NSArray *arrayOfObjectsByHref = [newMoc executeFetchRequest:request error:nil];
-                        
-                        //Если корневой элемент найден, получаем все его дочерние элементы
-                        if (arrayOfObjectsByHref.count) {
-
-                            array = [[[arrayOfObjectsByHref lastObject] children] sortedArrayUsingDescriptors:self.sortDesc];
-                        }
-                    }
-                    
-                    [newMoc save:nil];
-                    completionBlock (array, error);
-                }
-            }
+            YaWebXMLParser *parser = [[YaWebXMLParser alloc] initWithData:data edgeElement:@"response"];
             
-//        }];
-    
+            YaWebDBSaver *saver = [[YaWebDBSaver alloc] initWithParentFolder:_folderToParse];
+            parser.delegate = saver;
+            saver.delegate = wSelf;
+            saver.managedObjectContext = newMoc;
+            
+            [parser parse];
+            
+            
+        }
+        //Если при загрузке произошла какая-то ошибка
+        else {
+            if (completionBlock) {
+                
+                NSArray *array = nil;
+                
+                //Если есть папка для парсинга, используем дочерние элементы, уже имеющиеся в базе
+                if (_folderToParse) {
+                    array = [_folderToParse.children sortedArrayUsingDescriptors:self.sortDesc];
+                }
+                
+                //Если парсим корневой элемент
+                else {
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"link == %@", @"/"];
+                    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Folder"];
+                    [request setPredicate:predicate];
+                    
+                    NSArray *arrayOfObjectsByHref = [newMoc executeFetchRequest:request error:nil];
+                    
+                    //Если корневой элемент найден, получаем все его дочерние элементы
+                    if (arrayOfObjectsByHref.count) {
+                        
+                        array = [[[arrayOfObjectsByHref lastObject] children] sortedArrayUsingDescriptors:self.sortDesc];
+                    }
+                }
+                
+                [newMoc save:nil];
+                completionBlock (array, error);
+            }
+        }
     });
 }
 
@@ -290,7 +278,7 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
     [userDefaults removeObjectForKey:kAccessTokenDefaultsKey];
     
     [userDefaults synchronize];
-
+    
     //Чистим базу для этого пользователя
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BaseFile"];
     [request setIncludesSubentities:YES];
@@ -322,11 +310,13 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
 
 
 ////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
+#pragma mark - YaWebSaverDelegate
 ////////////////////////////////////////////////////////////////////////////////
 - (void)saver:(YaWebDBSaver *)saver didEndSaveWithElementsArray:(NSArray *)array error:(NSError *)error {
     
     [saver.managedObjectContext save:nil];//[newMoc save:nil];
+    
+    //По окончании процесса сохранения данных в базу вызываем _completionBlock, если он был
     if (_completionBlock) {
         _completionBlock (array, error);
     }

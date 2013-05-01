@@ -10,21 +10,30 @@
 
 @interface  YaWebXMLParser () <NSXMLParserDelegate>
 {
+    //Элемент XML-дерева, который парсится в текущий момент
     NSString *_currentElement;
+    
+    //Словарь с полями объекта
     NSMutableDictionary *_elementsDict;
+    
+    NSString *_edgeElement;
 }
 
 @property (nonatomic) NSXMLParser *parser;
+
 @end
 
 
 @implementation YaWebXMLParser
 
+
+//Кастомная инициализация объекта класса
 - (YaWebXMLParser *)initWithData:(NSData *)data edgeElement:(NSString *)edgeElement {
     
     self = [super init];
     
     if (self) {
+        _edgeElement = edgeElement;
         self.parser = [[NSXMLParser alloc] initWithData:data];
         [self.parser setShouldProcessNamespaces:YES];
         [self.parser setShouldReportNamespacePrefixes:YES];
@@ -54,6 +63,8 @@
     if ([_delegate respondsToSelector:@selector(parserDidStartParsing:)]) {
         [_delegate parserDidStartParsing:self];
     }
+    
+    //Создаем словарь для хранения полей разбираемого объекта
     _elementsDict = [NSMutableDictionary dictionary];
 
 }
@@ -71,7 +82,7 @@
 //===============================================================================
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
-    //Предыдущим был элемент resourcetype, на основании следующего определеятеся тип элемента: файл или папка
+    //Предыдущим был элемент resourcetype, на основании следующего определяется тип элемента: файл или папка
     if ([_currentElement isEqual:@"resourcetype"]) {
         
         //Если это папка
@@ -85,21 +96,22 @@
         
     }
     _currentElement = [NSMutableString stringWithString: elementName];
-    
-//    NSLog(@"elementName = %@   qName = %@  attributeDict = %@", elementName, qName, attributeDict);
 }
 
 
 //===============================================================================
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-//    NSLog(@"elementName = %@   qName = %@ namespaceURI = %@", elementName, qName, namespaceURI);
+- (void)parser:(NSXMLParser *)parser
+ didEndElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI
+ qualifiedName:(NSString *)qName {
     
-    //Закончилась обработка элемента файла/папки
-    if ([elementName isEqual:@"response"]) {
+    //Закончилась обработка объекта файла/папки
+    if ([elementName isEqualToString:_edgeElement]) {
         if ([_delegate respondsToSelector:@selector(parser:didFindElement:)]) {
             [_delegate parser:self didFindElement:_elementsDict];
         }
         NSLog(@"parser did found ElementDictionary: %@", _elementsDict);
+        //Создаем новый объект, старый уже считается завершенным
         _elementsDict = [NSMutableDictionary dictionaryWithCapacity:0];
     }
 }

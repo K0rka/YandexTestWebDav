@@ -13,7 +13,6 @@
 #import "File.h"
 #import "Folder.h"
 #import "TableViewController.h"
-#import "FileTypeSortDescriptor.h"
 
 @interface ViewController () <UIWebViewDelegate, NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, NSFetchedResultsControllerDelegate> {
     
@@ -208,4 +207,11 @@
     [self requestAccessToken];
 }
 
+
+
+//===============================================================================
+- (void) setLeftButtonToBackButton {
+    
+    self.navigationItem.rightBarButtonItem = self.navigationItem.backBarButtonItem;
+}
 @end

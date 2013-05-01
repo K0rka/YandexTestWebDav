@@ -25,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    
+    //Задание в качестве правой кнопки NavigationBar'а кнопки обновления
     UIBarButtonItem *itm = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     
     self.navigationItem.rightBarButtonItem = itm;
@@ -93,11 +95,7 @@
 
 
 
-//===============================================================================
-- (void) setLeftButtonToBackButton {
-    
-    self.navigationItem.rightBarButtonItem = self.navigationItem.backBarButtonItem;
-}
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
