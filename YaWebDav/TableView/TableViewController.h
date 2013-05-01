@@ -17,9 +17,6 @@
  */
 @interface TableViewController : ViewController
 
-
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
-
-
 
 @end

@@ -13,12 +13,6 @@
 #import "File.h"
 #import "Folder.h"
 
-@interface TableViewController () {
-    NSMutableArray *_folderArray;
-}
-
-@end
-
 @implementation TableViewController
 
 - (void)viewDidLoad
@@ -32,7 +26,7 @@
     self.navigationItem.rightBarButtonItem = itm;
     
     
-    
+    //Задание в качестве левого элемента NavigationBar'а кнопки логаута пользователя
     if ([[self.navigationController viewControllers] count] == 1) {
         
         UIBarButtonItem *itmLogout = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(logout)];
@@ -43,20 +37,14 @@
 
 
 
-//===============================================================================
-//- (void)setFolderArray:(NSMutableArray *)folderArray {
-//    _folderArray = folderArray;
-//    [self.tableView reloadData];
-//}
-
-
+////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Table view data source
-
-
+////////////////////////////////////////////////////////////////////////////////
 //===============================================================================
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.frc.fetchedObjects.count;//_folderArray.count;
+    //Пользуемся тем, что таблица не разделена на секции
+    return self.frc.fetchedObjects.count;
 }
 
 
@@ -66,10 +54,12 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    BaseFile *fileToShow = [self.frc objectAtIndexPath:indexPath]; //[_folderArray objectAtIndex:indexPath.row];
+    BaseFile *fileToShow = [self.frc objectAtIndexPath:indexPath]; 
 
+    //Пишем название файла
     cell.textLabel.text = fileToShow.displayName;
     
+    //Создаем форматтер для отображения даты создания 
     static NSDateFormatter *dateFormatter = nil;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -78,6 +68,8 @@
     
     cell.detailTextLabel.text = [dateFormatter stringFromDate:fileToShow.creationDate];
     
+    
+    //"Поиграем с цветами"
     if ([fileToShow isKindOfClass:[Folder class]]) {
         
         cell.contentView.backgroundColor = [UIColor colorWithRed:100./255 green:150./255 blue:255./255 alpha:0.3];
@@ -103,19 +95,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BaseFile *selectedFile = [self.frc objectAtIndexPath:indexPath];//[_folderArray objectAtIndex:indexPath.row];
+    //Определяем, какой объект выбрал пользователь
+    BaseFile *selectedFile = [self.frc objectAtIndexPath:indexPath];
     
+    
+    //Если пользователь нажал на объект папки
     if ([selectedFile isKindOfClass:[Folder class]]) {
         
-        //Создаем и показываем новый контролер
+        //Создаем и показываем новый контролер с содержимым выбранной папки
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
         
         TableViewController *tC = [storyBoard instantiateViewControllerWithIdentifier:@"TableVC"];
         [tC setManagedObjectContext:self.managedObjectContext];
+        
+        
+        //Задаем новому контроллеру в качестве родительской папку, на которую нажал пользователь
         [tC setFolder:(Folder *)selectedFile];
+        //Устанавливаем кнопку "Назад"
         [tC setLeftButtonToBackButton];
         [self.navigationController pushViewController:tC animated:YES];
         
+        //Запрашиваем обновление данных для содержимого выбранной папки
         [[YaWebDAVDataController sharedInstance] getFoldersForFolder:(Folder *)selectedFile withCompletionBlock:^(NSArray *folders, NSError *error) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -125,6 +125,9 @@
 
         }];
     }
+    
+    
+    //Если пользователь нажал на "файл" просто снимаем выделение
     else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }

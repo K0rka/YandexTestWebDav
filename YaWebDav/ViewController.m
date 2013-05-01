@@ -14,29 +14,11 @@
 #import "Folder.h"
 #import "TableViewController.h"
 
-@interface ViewController () <UIWebViewDelegate, NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, NSFetchedResultsControllerDelegate> {
+@interface ViewController () <UIWebViewDelegate, NSXMLParserDelegate, UIAlertViewDelegate, NSFetchedResultsControllerDelegate> {
     
-    NSMutableArray *_elementsArray;
-    
-    NSMutableDictionary *_elementsDict;
-    BaseFile *_currentObject;
-    
-    NSMutableString *_currentElement;
-    NSMutableString *_currentElementValue;
-    
-    NSDictionary *_eqDict;
-    
-    NSDateFormatter *_startDateFormatter;
-    NSDateFormatter *_lastModifiedDateFormatter;
-    
-      UIWebView *wView;
-    
-    
-    Folder *_parent;
+    //вьюшка для отображения запроса авторизации
+    UIWebView *wView;
 }
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
-//@property (retain, nonatomic) NSMutableArray *foldersArray;
 
 @end
 
@@ -47,15 +29,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Подписываемся на уведомления о том, что пользователь осуществил logout
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:kUserDidLogout object:nil];
 }
 
 
 
 //===============================================================================
-
+//Установка новой папки, пересоздаем под нее NSFetchedResultsController
 - (void)setFolder:(Folder *)folder {
-    
+    //Запрашиваем все файлы, у которых родителем выступает текущая папка. Если папка не задана, родитель - корень
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parent.link == %@", folder? folder.link : @"/"];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BaseFile"];
     [request setPredicate:predicate];
@@ -63,6 +47,7 @@
     [request setSortDescriptors:[[YaWebDAVDataController sharedInstance] sortedDescriptors]];
     
     [NSFetchedResultsController deleteCacheWithName: _folder? _folder.link : @"rootFolders"];
+    
     self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                    managedObjectContext:self.managedObjectContext
                                                      sectionNameKeyPath:nil
@@ -77,21 +62,16 @@
 
 
 //===============================================================================
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-
-
-//===============================================================================
+//Начальная конфигурация контроллера
 - (void) initialLoad {
+    //Если пользователь еще не авторизован
     if (![[YaWebDAVDataController sharedInstance] accessToken]) {
+        //Запрашиваем авторизацию
         [self requestAccessToken];
     }
     else {
-//        if (!((TableViewController *)self).folderArray)
-        {
-            [self didGetAccessToken];
-        }
+        //Говорим, что контроллер готов к работе
+        [self didGetAccessToken];
     }
 }
 
@@ -107,9 +87,7 @@
 
 
 //===============================================================================
-- (void) didGetAccessToken {
-    //    [_webView setHidden:YES];
-    
+- (void) didGetAccessToken {    
     [wView removeFromSuperview];
     [self.tableView setHidden:NO];
     [self.navigationController setNavigationBarHidden:NO];
@@ -132,6 +110,8 @@
 
 //===============================================================================
 - (void) processLoadFinishWithError:(NSError *)error {
+    
+    //Если получили ошибку во время загрузки и данных для отображения на экране нет, то показываем пользователю сообщение об ошибке
     if (error && !self.frc.fetchedObjects.count) {
         
         [[YaWebDAVDataController sharedInstance] showCantRefreshError];
@@ -148,6 +128,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Action
 ////////////////////////////////////////////////////////////////////////////////
+//Обновление данных по текущей открытой папке пользователя
 - (void) refresh  {
     __weak ViewController *wSelf = self;
     [[YaWebDAVDataController sharedInstance] getFoldersForFolder:self.folder withCompletionBlock:^(NSArray *folders, NSError *error) {
@@ -162,6 +143,7 @@
 }
 
 //===============================================================================
+//Обработка нажатия на кнопку логаута
 - (void) logout {
     [[YaWebDAVDataController sharedInstance] logout];
 }
