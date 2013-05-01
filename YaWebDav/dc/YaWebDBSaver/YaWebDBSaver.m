@@ -135,10 +135,10 @@ static NSString *const kContentType = @"getcontenttype";
         else {
             //Если объект - папка
             if ([[dict valueForKey:@"collection"] isEqual:@(YES)]) {
-                object = (Folder *)[NSEntityDescription insertNewObjectForEntityForName:@"Folder" inManagedObjectContext:self.managedObjectContext];
+                object = [NSEntityDescription insertNewObjectForEntityForName:@"Folder" inManagedObjectContext:self.managedObjectContext];
                 
                 if (!_parent) {
-                    _parent = object;
+                    _parent = (Folder *)object;
                 }
                 else {
                     object.parent = _parent;
@@ -238,9 +238,10 @@ static NSString *const kContentType = @"getcontenttype";
     
     NSArray *ar = [_parent.children sortedArrayUsingDescriptors:@[sort1, sort]];
 
-    
-    [_delegate saver:self didEndSaveWithElementsArray:ar error:error];
-    
+    if ([_delegate respondsToSelector:@selector(saver:didEndSaveWithElementsArray:error:)]) {
+        [_delegate saver:self didEndSaveWithElementsArray:ar error:error];
+    }
+
 }
 
 

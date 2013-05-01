@@ -50,7 +50,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 //===============================================================================
 - (void) parserDidStartDocument:(NSXMLParser *)parser {
-    [_delegate parserDidStartParsing:self];
+    
+    if ([_delegate respondsToSelector:@selector(parserDidStartParsing:)]) {
+        [_delegate parserDidStartParsing:self];
+    }
     _elementsDict = [NSMutableDictionary dictionary];
 
 }
@@ -59,7 +62,9 @@
 //===============================================================================
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 
-    [_delegate parser:self didEndParsingWithError:nil];
+    if ([_delegate respondsToSelector:@selector(parser:didEndParsingWithError:)]) {
+        [_delegate parser:self didEndParsingWithError:nil];
+    }
 
 }
 
@@ -91,7 +96,9 @@
     
     //Закончилась обработка элемента файла/папки
     if ([elementName isEqual:@"response"]) {
-        [_delegate parser:self didFindElement:_elementsDict];
+        if ([_delegate respondsToSelector:@selector(parser:didFindElement:)]) {
+            [_delegate parser:self didFindElement:_elementsDict];
+        }
         NSLog(@"parser did found ElementDictionary: %@", _elementsDict);
         _elementsDict = [NSMutableDictionary dictionaryWithCapacity:0];
     }
@@ -119,15 +126,17 @@
 
 //===============================================================================
 - (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError {
-    [_delegate parser:self didEndParsingWithError:validationError];
+    if ([_delegate respondsToSelector:@selector(parser:didEndParsingWithError:)]) {
+        [_delegate parser:self didEndParsingWithError:validationError];
+    }
 }
 
 
 //===============================================================================
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    
-    [_delegate parser:self didEndParsingWithError:parseError];
-    
+    if ([_delegate respondsToSelector:@selector(parser:didEndParsingWithError:)]) {
+        [_delegate parser:self didEndParsingWithError:parseError];
+    }
 }
 
 

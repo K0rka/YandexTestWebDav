@@ -16,7 +16,7 @@
 #import "YaWebDBSaver.h"
 #import "AppDelegate.h"
 
-@interface YaWebDAVDataController () <YaWebXMLParserDelegate, YaWebXMLSaverDelegate, UIAlertViewDelegate> {
+@interface YaWebDAVDataController () <YaWebXMLSaverDelegate, UIAlertViewDelegate> {
     NSMutableArray *_elementsArray;
     
     NSMutableDictionary *_elementsDict;
@@ -210,13 +210,11 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
     }
         NSMutableURLRequest *urlRequest = [self urlRequestForFolder:_folderToParse];
         
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
     
     NSURLResponse *response = nil;
     NSError *error = nil;
 //
-        //    sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
 
    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];//sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             NSLog(@"response = %@  error = %@", response, error );
@@ -271,10 +269,7 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
                         }
                     }
                     
-                    // Do the work
-                    // Your method here
-                    // Call save on context (this will send a save notification and call the method below)
-                    BOOL success = [newMoc save:nil];
+                    [newMoc save:nil];
                     completionBlock (array, error);
                 }
             }

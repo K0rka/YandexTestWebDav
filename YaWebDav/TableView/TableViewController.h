@@ -12,14 +12,14 @@
 @class Folder;
 
 
-@interface TableViewController : ViewController//UITableViewController
+/**
+	Класс таблицы
+ */
+@interface TableViewController : ViewController
+
 
 @property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
 
-@property (nonatomic) NSMutableArray *folderArray;
-- (id) initWithFolder:(Folder *) folder;
-
-- (void) setLeftButtonToBackButton;
 
 @end

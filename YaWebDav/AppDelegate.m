@@ -23,7 +23,10 @@
     TableViewController *controller = (TableViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     [[YaWebDAVDataController sharedInstance] setManagedObjectContext:self.managedObjectContext];
+    
+    //Выполняем начальную инициализацию контролера
     [controller initialLoad];
+    //Устанавливаем начальной директорией корневую
     [controller setFolder:nil];
     return YES;
 }

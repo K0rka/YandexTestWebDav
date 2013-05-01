@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @class Folder;
+
+/**
+	Контроллер данных приложения
+ */
 @interface YaWebDAVDataController : NSObject
+
 
 @property (nonatomic, retain) NSString *accessToken;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
@@ -35,11 +40,9 @@
 
 
 //===============================================================================
-- (void) getAllFoldersForCurrentUserStartingWithFolder:(Folder *)folder withCompletionBlock: (void (^)())completionBlock;
-
-
-
-//===============================================================================
+/**
+	Массив дескрипторов для сортировки отображаемых данных.
+ */
 - (NSArray *) sortedDescriptors;
 
 
@@ -50,14 +53,27 @@
 - (void) logout;
 
 
+/**
+	Показать alertView с ошибкой: "Невозможно обновить данные"
+ */
 - (void) showCantRefreshError;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Support Methods
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+	Сделать экран не реагирующим на действия пользователя.
+	@param showLoader Показывать alertView с индикатором активности
+ */
 - (void) disableAllContentUsingLoader:(BOOL)showLoader;
 
+
+/**
+	Сделать экран доступным для действий пользователя
+ */
 - (void) enableAllcontent;
+
 
 @end
