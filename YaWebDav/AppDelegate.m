@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
-#import "MasterViewController.h"
+#import "YaWebDAVDataController.h"
+#import "TableViewController.h"
 
 @implementation AppDelegate
 
@@ -20,8 +20,11 @@
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
+    TableViewController *controller = (TableViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    [[YaWebDAVDataController sharedInstance] setManagedObjectContext:self.managedObjectContext];
+    [controller initialLoad];
+    [controller setFolder:nil];
     return YES;
 }
 							
@@ -146,6 +149,36 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////
+//Обработка открытия приложения после авторизации
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    
+    NSString *urlFragment = [url fragment];
+    //Получаем из фрагмента массив объектов, разделенных & (получается массив строк вида <key>=<value>)
+    NSArray *array = [urlFragment componentsSeparatedByString:@"&"];
+    NSLog(@"[url fragment] = %@", [url fragment]);
+    NSLog(@"array = %@", array);
+    NSString *accessToken = nil;
+    
+    //Надо из всех элементов полученного массива выбрать элемент с ключом access_token
+    for (NSString *nextString in array) {
+        if ([nextString rangeOfString:@"access_token"].length) {
+            accessToken = [[nextString componentsSeparatedByString:@"="]lastObject];
+            break;
+        }
+    }
+    
+    [[YaWebDAVDataController sharedInstance] setAccessToken:accessToken];
+    
+    NSLog(@"accessToken = %@", accessToken);
+    
+    return YES;
 }
 
 @end

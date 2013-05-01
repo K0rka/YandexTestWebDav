@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67285E3B172EBED900078D9E /* YaWebDBSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 67285E3A172EBED900078D9E /* YaWebDBSaver.m */; };
+		67285E41172ECB0700078D9E /* YaWebDav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67285E3F172ECB0700078D9E /* YaWebDav.xcdatamodeld */; };
+		67285E5B1731024F00078D9E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67285E591731024F00078D9E /* Localizable.strings */; };
+		6777C371172DC78E0073F629 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BB6172DC49F0046F772 /* TableViewController.m */; };
+		6777C372172DC7E70073F629 /* BaseFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B9C172DBD280046F772 /* BaseFile.m */; };
+		6777C373172DC7EA0073F629 /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B9E172DBD280046F772 /* File.m */; };
+		6777C374172DC7EE0073F629 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BA0172DBD280046F772 /* Folder.m */; };
+		6777C375172DC7F20073F629 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BB8172DC4BD0046F772 /* ViewController.m */; };
+		6777C37C172E45040073F629 /* YaWebXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6777C37B172E45040073F629 /* YaWebXMLParser.m */; };
 		679A9B3E172BEA520046F772 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A9B3D172BEA520046F772 /* UIKit.framework */; };
 		679A9B40172BEA520046F772 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A9B3F172BEA520046F772 /* Foundation.framework */; };
 		679A9B42172BEA520046F772 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A9B41172BEA520046F772 /* CoreGraphics.framework */; };
@@ -18,12 +27,19 @@
 		679A9B54172BEA520046F772 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 679A9B53172BEA520046F772 /* Default@2x.png */; };
 		679A9B56172BEA520046F772 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 679A9B55172BEA520046F772 /* Default-568h@2x.png */; };
 		679A9B59172BEA520046F772 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 679A9B57172BEA520046F772 /* MainStoryboard.storyboard */; };
-		679A9B5C172BEA520046F772 /* YaWebDav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B5A172BEA520046F772 /* YaWebDav.xcdatamodeld */; };
-		679A9B5F172BEA520046F772 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B5E172BEA520046F772 /* MasterViewController.m */; };
-		679A9B62172BEA520046F772 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B61172BEA520046F772 /* DetailViewController.m */; };
+		679A9BB9172DC4CF0046F772 /* ActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BB4172DC4370046F772 /* ActivityAlertView.m */; };
+		679A9BBB172DC5010046F772 /* YaWebDAVDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BB1172DC4220046F772 /* YaWebDAVDataController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		67285E39172EBED900078D9E /* YaWebDBSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaWebDBSaver.h; path = dc/YaWebDBSaver/YaWebDBSaver.h; sourceTree = "<group>"; };
+		67285E3A172EBED900078D9E /* YaWebDBSaver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaWebDBSaver.m; path = dc/YaWebDBSaver/YaWebDBSaver.m; sourceTree = "<group>"; };
+		67285E40172ECB0700078D9E /* YaWebDav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YaWebDav.xcdatamodel; sourceTree = "<group>"; };
+		67285E571731016900078D9E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		67285E5A1731024F00078D9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		67285E5C1731025400078D9E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6777C37A172E45040073F629 /* YaWebXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaWebXMLParser.h; path = dc/YaWebXMLParser/YaWebXMLParser.h; sourceTree = "<group>"; };
+		6777C37B172E45040073F629 /* YaWebXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaWebXMLParser.m; path = dc/YaWebXMLParser/YaWebXMLParser.m; sourceTree = "<group>"; };
 		679A9B3A172BEA520046F772 /* YaWebDav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaWebDav.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		679A9B3D172BEA520046F772 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		679A9B3F172BEA520046F772 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,11 +55,21 @@
 		679A9B53172BEA520046F772 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		679A9B55172BEA520046F772 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		679A9B58172BEA520046F772 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		679A9B5B172BEA520046F772 /* YaWebDav.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YaWebDav.xcdatamodel; sourceTree = "<group>"; };
-		679A9B5D172BEA520046F772 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		679A9B5E172BEA520046F772 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		679A9B60172BEA520046F772 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		679A9B61172BEA520046F772 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		679A9B6B172C0F600046F772 /* SharedNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedNotificationNames.h; sourceTree = "<group>"; };
+		679A9B9B172DBD280046F772 /* BaseFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseFile.h; path = DataModelFiles/BaseFile.h; sourceTree = "<group>"; };
+		679A9B9C172DBD280046F772 /* BaseFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseFile.m; path = DataModelFiles/BaseFile.m; sourceTree = "<group>"; };
+		679A9B9D172DBD280046F772 /* File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = File.h; path = DataModelFiles/File.h; sourceTree = "<group>"; };
+		679A9B9E172DBD280046F772 /* File.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = File.m; path = DataModelFiles/File.m; sourceTree = "<group>"; };
+		679A9B9F172DBD280046F772 /* Folder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = DataModelFiles/Folder.h; sourceTree = "<group>"; };
+		679A9BA0172DBD280046F772 /* Folder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Folder.m; path = DataModelFiles/Folder.m; sourceTree = "<group>"; };
+		679A9BB0172DC4220046F772 /* YaWebDAVDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaWebDAVDataController.h; path = dc/YaWebDAVDataController.h; sourceTree = "<group>"; };
+		679A9BB1172DC4220046F772 /* YaWebDAVDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaWebDAVDataController.m; path = dc/YaWebDAVDataController.m; sourceTree = "<group>"; };
+		679A9BB3172DC4370046F772 /* ActivityAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityAlertView.h; sourceTree = "<group>"; };
+		679A9BB4172DC4370046F772 /* ActivityAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityAlertView.m; sourceTree = "<group>"; };
+		679A9BB5172DC49F0046F772 /* TableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = TableView/TableViewController.h; sourceTree = "<group>"; };
+		679A9BB6172DC49F0046F772 /* TableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = TableView/TableViewController.m; sourceTree = "<group>"; };
+		679A9BB7172DC4BD0046F772 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		679A9BB8172DC4BD0046F772 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +87,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67285E38172EBEA400078D9E /* YaWebDBSaver */ = {
+			isa = PBXGroup;
+			children = (
+				67285E39172EBED900078D9E /* YaWebDBSaver.h */,
+				67285E3A172EBED900078D9E /* YaWebDBSaver.m */,
+			);
+			name = YaWebDBSaver;
+			sourceTree = "<group>";
+		};
+		6777C379172E449B0073F629 /* YaWebXMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				6777C37A172E45040073F629 /* YaWebXMLParser.h */,
+				6777C37B172E45040073F629 /* YaWebXMLParser.m */,
+			);
+			name = YaWebXMLParser;
+			sourceTree = "<group>";
+		};
 		679A9B31172BEA520046F772 = {
 			isa = PBXGroup;
 			children = (
@@ -94,12 +138,9 @@
 			children = (
 				679A9B4E172BEA520046F772 /* AppDelegate.h */,
 				679A9B4F172BEA520046F772 /* AppDelegate.m */,
-				679A9B57172BEA520046F772 /* MainStoryboard.storyboard */,
-				679A9B5D172BEA520046F772 /* MasterViewController.h */,
-				679A9B5E172BEA520046F772 /* MasterViewController.m */,
-				679A9B60172BEA520046F772 /* DetailViewController.h */,
-				679A9B61172BEA520046F772 /* DetailViewController.m */,
-				679A9B5A172BEA520046F772 /* YaWebDav.xcdatamodeld */,
+				679A9B95172DB9C20046F772 /* DataController */,
+				679A9B97172DB9E70046F772 /* DataModelFiles */,
+				679A9B96172DB9D30046F772 /* MainViewController */,
 				679A9B46172BEA520046F772 /* Supporting Files */,
 			);
 			path = YaWebDav;
@@ -108,6 +149,8 @@
 		679A9B46172BEA520046F772 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				679A9BA7172DC1C20046F772 /* LoaderAlertView */,
+				679A9B6B172C0F600046F772 /* SharedNotificationNames.h */,
 				679A9B47172BEA520046F772 /* YaWebDav-Info.plist */,
 				679A9B48172BEA520046F772 /* InfoPlist.strings */,
 				679A9B4B172BEA520046F772 /* main.m */,
@@ -115,8 +158,63 @@
 				679A9B51172BEA520046F772 /* Default.png */,
 				679A9B53172BEA520046F772 /* Default@2x.png */,
 				679A9B55172BEA520046F772 /* Default-568h@2x.png */,
+				67285E591731024F00078D9E /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		679A9B7C172C2EE70046F772 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				679A9BB5172DC49F0046F772 /* TableViewController.h */,
+				679A9BB6172DC49F0046F772 /* TableViewController.m */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
+		679A9B95172DB9C20046F772 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				67285E38172EBEA400078D9E /* YaWebDBSaver */,
+				6777C379172E449B0073F629 /* YaWebXMLParser */,
+				679A9BB0172DC4220046F772 /* YaWebDAVDataController.h */,
+				679A9BB1172DC4220046F772 /* YaWebDAVDataController.m */,
+			);
+			name = DataController;
+			sourceTree = "<group>";
+		};
+		679A9B96172DB9D30046F772 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				679A9B7C172C2EE70046F772 /* TableView */,
+				679A9BB7172DC4BD0046F772 /* ViewController.h */,
+				679A9BB8172DC4BD0046F772 /* ViewController.m */,
+				679A9B57172BEA520046F772 /* MainStoryboard.storyboard */,
+			);
+			name = MainViewController;
+			sourceTree = "<group>";
+		};
+		679A9B97172DB9E70046F772 /* DataModelFiles */ = {
+			isa = PBXGroup;
+			children = (
+				679A9B9B172DBD280046F772 /* BaseFile.h */,
+				679A9B9C172DBD280046F772 /* BaseFile.m */,
+				679A9B9D172DBD280046F772 /* File.h */,
+				679A9B9E172DBD280046F772 /* File.m */,
+				679A9B9F172DBD280046F772 /* Folder.h */,
+				679A9BA0172DBD280046F772 /* Folder.m */,
+				67285E3F172ECB0700078D9E /* YaWebDav.xcdatamodeld */,
+			);
+			name = DataModelFiles;
+			sourceTree = "<group>";
+		};
+		679A9BA7172DC1C20046F772 /* LoaderAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				679A9BB3172DC4370046F772 /* ActivityAlertView.h */,
+				679A9BB4172DC4370046F772 /* ActivityAlertView.m */,
+			);
+			path = LoaderAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +252,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 679A9B31172BEA520046F772;
 			productRefGroup = 679A9B3B172BEA520046F772 /* Products */;
@@ -175,6 +274,7 @@
 				679A9B54172BEA520046F772 /* Default@2x.png in Resources */,
 				679A9B56172BEA520046F772 /* Default-568h@2x.png in Resources */,
 				679A9B59172BEA520046F772 /* MainStoryboard.storyboard in Resources */,
+				67285E5B1731024F00078D9E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,19 +287,36 @@
 			files = (
 				679A9B4C172BEA520046F772 /* main.m in Sources */,
 				679A9B50172BEA520046F772 /* AppDelegate.m in Sources */,
-				679A9B5C172BEA520046F772 /* YaWebDav.xcdatamodeld in Sources */,
-				679A9B5F172BEA520046F772 /* MasterViewController.m in Sources */,
-				679A9B62172BEA520046F772 /* DetailViewController.m in Sources */,
+				679A9BB9172DC4CF0046F772 /* ActivityAlertView.m in Sources */,
+				679A9BBB172DC5010046F772 /* YaWebDAVDataController.m in Sources */,
+				6777C371172DC78E0073F629 /* TableViewController.m in Sources */,
+				6777C372172DC7E70073F629 /* BaseFile.m in Sources */,
+				6777C373172DC7EA0073F629 /* File.m in Sources */,
+				6777C374172DC7EE0073F629 /* Folder.m in Sources */,
+				6777C375172DC7F20073F629 /* ViewController.m in Sources */,
+				6777C37C172E45040073F629 /* YaWebXMLParser.m in Sources */,
+				67285E3B172EBED900078D9E /* YaWebDBSaver.m in Sources */,
+				67285E41172ECB0700078D9E /* YaWebDav.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		67285E591731024F00078D9E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67285E5A1731024F00078D9E /* en */,
+				67285E5C1731025400078D9E /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		679A9B48172BEA520046F772 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				679A9B49172BEA520046F772 /* en */,
+				67285E571731016900078D9E /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -227,6 +344,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kate Korovkina (U8XCFLREM6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -242,6 +360,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "354BEEC7-1977-4D07-9AAD-CAC1DAF69C57";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -258,6 +377,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -312,17 +432,19 @@
 				679A9B67172BEA520046F772 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		679A9B5A172BEA520046F772 /* YaWebDav.xcdatamodeld */ = {
+		67285E3F172ECB0700078D9E /* YaWebDav.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				679A9B5B172BEA520046F772 /* YaWebDav.xcdatamodel */,
+				67285E40172ECB0700078D9E /* YaWebDav.xcdatamodel */,
 			);
-			currentVersion = 679A9B5B172BEA520046F772 /* YaWebDav.xcdatamodel */;
-			path = YaWebDav.xcdatamodeld;
+			currentVersion = 67285E40172ECB0700078D9E /* YaWebDav.xcdatamodel */;
+			name = YaWebDav.xcdatamodeld;
+			path = DataModelFiles/YaWebDav.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

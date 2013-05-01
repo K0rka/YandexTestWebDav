@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  YaWebDav
+
+  Created by Korovkina Katerina on 01.05.13.
+  Copyright (c) 2013 Korovkina Katerina. All rights reserved.
+*/
+
+"Error" = "Error";
+"ErrorWhileGetAccessToken" =  "Authorization error. Check your Internet connection and try again.";
+"Retry" = "Try again";
+"CantRefresh" = "Can't refresh folder content. Check your Internet connection and press Refresh button.";

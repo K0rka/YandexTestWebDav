@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  YaWebDav
+
+  Created by Korovkina Katerina on 01.05.13.
+  Copyright (c) 2013 Korovkina Katerina. All rights reserved.
+*/
+
+"Error" = "Ошибка";
+"ErrorWhileGetAccessToken" =  "Ошибка авторизации. Проверьте свое соединение с Интернетом и попробуйте еще раз.";
+"Retry" = "Попробовать снова";
+"CantRefresh" = "Не удалось обновить содержимое папки. Проверьте свое соединение с Интернетом и нажмите кнопку \"Обновления\"";

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BaseFile" representedClassName="BaseFile" isAbstract="YES" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastModified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BaseFile" inverseName="parent" inverseEntity="BaseFile" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="children" inverseEntity="BaseFile" syncable="YES"/>
+    </entity>
+    <entity name="File" representedClassName="File" parentEntity="BaseFile" syncable="YES">
+        <attribute name="contentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="etag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="Folder" representedClassName="Folder" parentEntity="BaseFile" syncable="YES"/>
+    <elements>
+        <element name="BaseFile" positionX="160" positionY="192" width="128" height="133"/>
+        <element name="Folder" positionX="538" positionY="372" width="128" height="43"/>
+        <element name="File" positionX="27" positionY="-99" width="128" height="90"/>
+    </elements>
+</model>
