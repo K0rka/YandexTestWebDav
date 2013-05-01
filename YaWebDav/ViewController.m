@@ -13,7 +13,7 @@
 #import "File.h"
 #import "Folder.h"
 #import "TableViewController.h"
-
+#import "FileTypeSortDescriptor.h"
 
 @interface ViewController () <UIWebViewDelegate, NSXMLParserDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, NSFetchedResultsControllerDelegate> {
     
@@ -57,14 +57,11 @@
 
 - (void)setFolder:(Folder *)folder {
     
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES];
-    NSSortDescriptor *sort1 = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parent.link == %@", folder? folder.link : @"/"];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"BaseFile"];
     [request setPredicate:predicate];
     [request setIncludesSubentities:YES];
-    [request setSortDescriptors:@[sort, sort1]];
+    [request setSortDescriptors:[[YaWebDAVDataController sharedInstance] sortedDescriptors]];
     
     [NSFetchedResultsController deleteCacheWithName: _folder? _folder.link : @"rootFolders"];
     self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -193,7 +190,7 @@
 //===============================================================================
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     
-    if (!error) {
+    if (![error.domain isEqualToString:NSURLErrorDomain]) {
         return;
     }
     

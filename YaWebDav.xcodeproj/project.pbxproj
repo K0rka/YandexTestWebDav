@@ -10,8 +10,9 @@
 		67285E3B172EBED900078D9E /* YaWebDBSaver.m in Sources */ = {isa = PBXBuildFile; fileRef = 67285E3A172EBED900078D9E /* YaWebDBSaver.m */; };
 		67285E41172ECB0700078D9E /* YaWebDav.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 67285E3F172ECB0700078D9E /* YaWebDav.xcdatamodeld */; };
 		67285E5B1731024F00078D9E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67285E591731024F00078D9E /* Localizable.strings */; };
+		67285E6217310A8D00078D9E /* FileTypeSortDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 67285E6117310A8D00078D9E /* FileTypeSortDescriptor.m */; };
+		67285E6817310F7400078D9E /* BaseFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 67285E6717310E6500078D9E /* BaseFile.m */; };
 		6777C371172DC78E0073F629 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BB6172DC49F0046F772 /* TableViewController.m */; };
-		6777C372172DC7E70073F629 /* BaseFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B9C172DBD280046F772 /* BaseFile.m */; };
 		6777C373172DC7EA0073F629 /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9B9E172DBD280046F772 /* File.m */; };
 		6777C374172DC7EE0073F629 /* Folder.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BA0172DBD280046F772 /* Folder.m */; };
 		6777C375172DC7F20073F629 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679A9BB8172DC4BD0046F772 /* ViewController.m */; };
@@ -38,6 +39,10 @@
 		67285E571731016900078D9E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		67285E5A1731024F00078D9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		67285E5C1731025400078D9E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		67285E6017310A8D00078D9E /* FileTypeSortDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileTypeSortDescriptor.h; path = Utilities/FileTypeSortDescriptor/FileTypeSortDescriptor.h; sourceTree = "<group>"; };
+		67285E6117310A8D00078D9E /* FileTypeSortDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileTypeSortDescriptor.m; path = Utilities/FileTypeSortDescriptor/FileTypeSortDescriptor.m; sourceTree = "<group>"; };
+		67285E6617310E6500078D9E /* BaseFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseFile.h; path = DataModelFiles/BaseFile.h; sourceTree = "<group>"; };
+		67285E6717310E6500078D9E /* BaseFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseFile.m; path = DataModelFiles/BaseFile.m; sourceTree = "<group>"; };
 		6777C37A172E45040073F629 /* YaWebXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YaWebXMLParser.h; path = dc/YaWebXMLParser/YaWebXMLParser.h; sourceTree = "<group>"; };
 		6777C37B172E45040073F629 /* YaWebXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YaWebXMLParser.m; path = dc/YaWebXMLParser/YaWebXMLParser.m; sourceTree = "<group>"; };
 		679A9B3A172BEA520046F772 /* YaWebDav.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaWebDav.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,8 +61,6 @@
 		679A9B55172BEA520046F772 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		679A9B58172BEA520046F772 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		679A9B6B172C0F600046F772 /* SharedNotificationNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedNotificationNames.h; sourceTree = "<group>"; };
-		679A9B9B172DBD280046F772 /* BaseFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BaseFile.h; path = DataModelFiles/BaseFile.h; sourceTree = "<group>"; };
-		679A9B9C172DBD280046F772 /* BaseFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BaseFile.m; path = DataModelFiles/BaseFile.m; sourceTree = "<group>"; };
 		679A9B9D172DBD280046F772 /* File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = File.h; path = DataModelFiles/File.h; sourceTree = "<group>"; };
 		679A9B9E172DBD280046F772 /* File.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = File.m; path = DataModelFiles/File.m; sourceTree = "<group>"; };
 		679A9B9F172DBD280046F772 /* Folder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Folder.h; path = DataModelFiles/Folder.h; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				679A9B53172BEA520046F772 /* Default@2x.png */,
 				679A9B55172BEA520046F772 /* Default-568h@2x.png */,
 				67285E591731024F00078D9E /* Localizable.strings */,
+				67285E6017310A8D00078D9E /* FileTypeSortDescriptor.h */,
+				67285E6117310A8D00078D9E /* FileTypeSortDescriptor.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -197,8 +202,8 @@
 		679A9B97172DB9E70046F772 /* DataModelFiles */ = {
 			isa = PBXGroup;
 			children = (
-				679A9B9B172DBD280046F772 /* BaseFile.h */,
-				679A9B9C172DBD280046F772 /* BaseFile.m */,
+				67285E6617310E6500078D9E /* BaseFile.h */,
+				67285E6717310E6500078D9E /* BaseFile.m */,
 				679A9B9D172DBD280046F772 /* File.h */,
 				679A9B9E172DBD280046F772 /* File.m */,
 				679A9B9F172DBD280046F772 /* Folder.h */,
@@ -290,13 +295,14 @@
 				679A9BB9172DC4CF0046F772 /* ActivityAlertView.m in Sources */,
 				679A9BBB172DC5010046F772 /* YaWebDAVDataController.m in Sources */,
 				6777C371172DC78E0073F629 /* TableViewController.m in Sources */,
-				6777C372172DC7E70073F629 /* BaseFile.m in Sources */,
 				6777C373172DC7EA0073F629 /* File.m in Sources */,
 				6777C374172DC7EE0073F629 /* Folder.m in Sources */,
 				6777C375172DC7F20073F629 /* ViewController.m in Sources */,
 				6777C37C172E45040073F629 /* YaWebXMLParser.m in Sources */,
 				67285E3B172EBED900078D9E /* YaWebDBSaver.m in Sources */,
 				67285E41172ECB0700078D9E /* YaWebDav.xcdatamodeld in Sources */,
+				67285E6217310A8D00078D9E /* FileTypeSortDescriptor.m in Sources */,
+				67285E6817310F7400078D9E /* BaseFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/dc/YaWebDAVDataController.m"
-         timestampString = "389085794.369793"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "331"
-         endingLineNumber = "331"
+         startingLineNumber = "335"
+         endingLineNumber = "335"
          landmarkName = "-saver:didEndSaveWithElementsArray:error:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/dc/YaWebDAVDataController.m"
-         timestampString = "389085794.369793"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "332"
-         endingLineNumber = "332"
+         startingLineNumber = "336"
+         endingLineNumber = "336"
          landmarkName = "-saver:didEndSaveWithElementsArray:error:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/dc/YaWebDAVDataController.m"
-         timestampString = "389085794.369793"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "288"
-         endingLineNumber = "288"
+         startingLineNumber = "292"
+         endingLineNumber = "292"
          landmarkName = "-logout"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/dc/YaWebDAVDataController.m"
-         timestampString = "389085794.369793"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274"
+         startingLineNumber = "278"
+         endingLineNumber = "278"
          landmarkName = "-getFoldersForFolder:withCompletionBlock:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/ViewController.m"
-         timestampString = "389089196.862075"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "148"
-         endingLineNumber = "148"
+         startingLineNumber = "145"
+         endingLineNumber = "145"
          landmarkName = "-controllerDidChangeContent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/dc/YaWebDAVDataController.m"
-         timestampString = "389085794.369793"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "223"
-         endingLineNumber = "223"
+         startingLineNumber = "227"
+         endingLineNumber = "227"
          landmarkName = "-getFoldersForFolder:withCompletionBlock:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/dc/YaWebDAVDataController.m"
-         timestampString = "389085794.369793"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "342"
-         endingLineNumber = "342"
+         startingLineNumber = "346"
+         endingLineNumber = "346"
          landmarkName = "-disableAllContentUsingLoader:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,12 +177,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "YaWebDav/ViewController.m"
-         timestampString = "389089196.862075"
+         timestampString = "389091641.770674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "139"
-         endingLineNumber = "139"
+         startingLineNumber = "136"
+         endingLineNumber = "136"
          landmarkName = "-processLoadFinishWithError:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "YaWebDav/ViewController.m"
+         timestampString = "389091641.770674"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "193"
+         endingLineNumber = "193"
+         landmarkName = "-webView:didFailLoadWithError:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

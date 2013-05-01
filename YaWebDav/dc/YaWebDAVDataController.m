@@ -66,10 +66,8 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
         if (accessToken) {
             sharedInstance.accessToken = accessToken;
         }
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES];
-        NSSortDescriptor *sort1 = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
-        sharedInstance.sortDesc = @[sort, sort1];
+
+        sharedInstance.sortDesc = [sharedInstance sortedDescriptors];
         
     });
     
@@ -77,7 +75,13 @@ static NSString *const kApplicationId = @"74cf0116327146c992797499e7ea3c64";
 }
 
 
-
+//===============================================================================
+- (NSArray *) sortedDescriptors {
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES];
+    NSSortDescriptor *sort1 = [NSSortDescriptor sortDescriptorWithKey:@"displayName" ascending:YES];
+    NSSortDescriptor *sort3 = [NSSortDescriptor sortDescriptorWithKey:@"fileType" ascending:YES];
+    return @[sort3, sort1, sort];
+}
 
 
 //===============================================================================

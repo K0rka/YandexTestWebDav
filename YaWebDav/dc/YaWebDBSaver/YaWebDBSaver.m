@@ -196,6 +196,14 @@ static NSString *const kContentType = @"getcontenttype";
         else if ([nextValue isEqual:kDisplayName]) {
             file.displayName = string;
         }
+        else {
+            if ([[dictionary valueForKey:@"collection"] isEqual:@(YES)]) {
+                file.fileType = @(FileTypeFolder);
+            }
+            else {
+                file.fileType = @(FileTypeFile);
+            }
+        }
         
     }
     
